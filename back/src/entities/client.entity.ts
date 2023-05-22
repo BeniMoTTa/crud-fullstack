@@ -2,7 +2,7 @@ import { getRounds, hashSync } from "bcryptjs";
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Contact } from "./contact.entity";
 
-enum Gender {
+export enum GenderC {
   MALE = "male",
   FEMALE = "female",
   NOBINARY = "no binary",
@@ -11,11 +11,11 @@ enum Gender {
 
 @Entity("client")
 export class Client {
-  @PrimaryGeneratedColumn("increment")
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column()
-  fullName: string;
+  clientName: string;
 
   @Column()
   email: string;
@@ -36,8 +36,8 @@ export class Client {
     }
   }
 
-  @Column({ type: "enum", enum: Gender, default: Gender.DEFAULT })
-  gender: Gender;
+  @Column({ type: "enum", enum: GenderC, default: GenderC.DEFAULT })
+  gender: GenderC;
 
   @OneToMany(() => Contact, (contact) => contact.client)
   contact: Contact[];

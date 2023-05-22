@@ -1,20 +1,20 @@
 import { Client } from "./client.entity";
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
-enum Gender {
+enum GenderContact {
   MALE = "male",
   FEMALE = "female",
   NOBINARY = "no binary",
-  DEFAULT = "No say",
+  DEFAULT = "uniformed",
 }
 
 @Entity("contact")
 export class Contact {
-  @PrimaryGeneratedColumn("increment")
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column()
-  fullName: string;
+  contactName: string;
 
   @Column()
   email: string;
@@ -25,8 +25,8 @@ export class Contact {
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   dateRegister: Date;
 
-  @Column({ type: "enum", enum: Gender, default: Gender.DEFAULT })
-  gender: Gender;
+  @Column({ type: "enum", enum: GenderContact, default: GenderContact.DEFAULT })
+  gender: GenderContact;
 
   @ManyToOne(() => Client, (client) => client.contact)
   client: Client;
