@@ -1,5 +1,12 @@
 import { getRounds, hashSync } from "bcryptjs";
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  BeforeInsert,
+  BeforeUpdate,
+  PrimaryGeneratedColumn,
+  OneToMany,
+} from "typeorm";
 import { Contact } from "./contact.entity";
 
 export enum GenderC {
@@ -17,7 +24,7 @@ export class Client {
   @Column()
   clientName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column({ type: "varchar", length: 200 })
@@ -29,6 +36,8 @@ export class Client {
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   dateRegister: Date;
 
+  @BeforeInsert()
+  @BeforeUpdate()
   hashpassword() {
     const encrypted = getRounds(this.password);
     if (!encrypted) {

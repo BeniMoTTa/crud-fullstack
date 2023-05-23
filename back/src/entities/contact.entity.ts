@@ -1,7 +1,7 @@
 import { Client } from "./client.entity";
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
-enum GenderContact {
+export enum GenderContact {
   MALE = "male",
   FEMALE = "female",
   NOBINARY = "no binary",
