@@ -1,6 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { Client } from "../../entities/client.entity";
 import { AppError } from "../../errors";
+import { returnClientSchema } from "../../schemas/client.schema";
 
 export const retrieveOneClientService = async (
   id: string,
@@ -12,6 +13,15 @@ export const retrieveOneClientService = async (
     relations: {
       contact: true,
     },
+    select: [
+      "id",
+      "dateRegister",
+      "contact",
+      "email",
+      "phone",
+      "clientName",
+      "gender",
+    ],
   });
   if (!client) {
     throw new AppError("Client not Found", 404);

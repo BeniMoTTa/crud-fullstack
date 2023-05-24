@@ -5,6 +5,7 @@ import { retrieveClientService } from "../services/client/retrieveAllClient.serv
 import { deleteClientService } from "../services/client/deleteClient.service";
 import { retrieveOneClientService } from "../services/client/retrieveOneClient.service";
 import updateClientService from "../services/client/updateClient.service";
+import { returnClientSchema } from "../schemas/client.schema";
 
 const createClientController = async (req: Request, res: Response) => {
   const clientData: TClient = req.body;
