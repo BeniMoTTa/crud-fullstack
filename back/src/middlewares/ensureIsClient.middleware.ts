@@ -18,7 +18,7 @@ export const ensureIsClient = (
       throw new AppError(error.message, 401);
     }
     if (decoded.sub !== req.params.id) {
-      throw new AppError("You are not authorized to delete this item", 401);
+      throw new AppError("You are not authorized", 401);
     }
     next();
   });

@@ -4,7 +4,7 @@ import { AppError } from "../../errors";
 
 export const retrieveOneClientService = async (
   id: string,
-  token_id: string
+  tokenId: string
 ): Promise<Client> => {
   const clientRepository = AppDataSource.getRepository(Client);
   const client = await clientRepository.findOne({
@@ -16,7 +16,7 @@ export const retrieveOneClientService = async (
   if (!client) {
     throw new AppError("Client not Found", 404);
   }
-  if (client.id !== token_id) {
+  if (client.id !== tokenId) {
     throw new AppError("Unauthorized", 401);
   }
   return client;

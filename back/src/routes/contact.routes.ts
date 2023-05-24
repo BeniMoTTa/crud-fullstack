@@ -9,8 +9,8 @@ import {
 import { ensureRequestIsValidMiddleware } from "../middlewares/ensureIsValidRequest.middlewares";
 import { contactSchema } from "../schemas/contact.schema";
 import { ensureTokenValid } from "../middlewares/ensureTokenIsValid.middleware";
-import { ensureIsExistsClientMiddleware } from "../middlewares/ensureIsExists.middleware";
 import { ensureIsExistsContactMiddleware } from "../middlewares/ensureIsExistisContact.middleware";
+import { ensureIsClient } from "../middlewares/ensureIsClient.middleware";
 
 export const contactRouter: Router = Router();
 
@@ -31,12 +31,15 @@ contactRouter.get(
 
 contactRouter.delete(
   "/:id",
+  ensureIsClient,
   ensureIsExistsContactMiddleware,
   deleteContactController
 );
 
 contactRouter.patch(
   "/:id",
+  ensureIsClient,
   ensureIsExistsContactMiddleware,
+  ensureRequestIsValidMiddleware(contactSchema),
   updateContactController
 );

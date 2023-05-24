@@ -19,7 +19,7 @@ export const createContactService = async (
   const contactRepository = AppDataSource.getRepository(Contact);
   const contact = contactRepository.create({
     ...data,
-    client,
+    client: client,
   });
   await contactRepository.save(contact);
   const newContact = returnContactSchema.parse(contact);

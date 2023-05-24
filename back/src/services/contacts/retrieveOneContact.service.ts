@@ -6,7 +6,7 @@ import { TContact } from "../../interfaces/contact.interface";
 
 export const retrieveOneContactService = async (
   id: string,
-  token_id: string
+  tokenId: string
 ): Promise<TContact> => {
   const contactRepository = AppDataSource.getRepository(Contact);
   const contact = await contactRepository.findOne({
@@ -18,7 +18,7 @@ export const retrieveOneContactService = async (
   if (!contact) {
     throw new AppError("Contact not Found", 404);
   }
-  if (contact.client.id !== token_id) {
+  if (contact.client.id !== tokenId) {
     throw new AppError("Unauthorized", 401);
   }
   return contact;
