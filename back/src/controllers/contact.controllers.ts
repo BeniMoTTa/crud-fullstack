@@ -28,7 +28,7 @@ export const retrieveOneContactController = async (
   req: Request,
   res: Response
 ) => {
-  const contact = await retrieveOneContactService(req.params.id);
+  const contact = await retrieveOneContactService(req.params.id, req.user.id);
 
   return res.status(200).json(contact);
 };

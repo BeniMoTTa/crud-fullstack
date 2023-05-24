@@ -9,6 +9,9 @@ import {
 import { ensureRequestIsValidMiddleware } from "../middlewares/ensureIsValidRequest.middlewares";
 import { clientSchema, updateClientSchema } from "../schemas/client.schema";
 import { ensureIsExistsClientMiddleware } from "../middlewares/ensureIsExists.middleware";
+import { ensureTokenValid } from "../middlewares/ensureTokenIsValid.middleware";
+import { ensureIsClient } from "../middlewares/ensureIsClient.middleware";
+import { ensureClientHasNoContacts } from "../middlewares/ensureClientHasNoContacts.middleware";
 
 const clientRoutes = Router();
 
@@ -21,6 +24,7 @@ clientRoutes.post(
 clientRoutes.get("", retrieveAllClientController);
 clientRoutes.get(
   "/:id",
+  ensureTokenValid,
   ensureIsExistsClientMiddleware,
   retrieveOneClientController
 );
@@ -34,7 +38,8 @@ clientRoutes.patch(
 
 clientRoutes.delete(
   "/:id",
-  ensureIsExistsClientMiddleware,
+  ensureIsClient,
+  ensureClientHasNoContacts,
   deleteClientController
 );
 

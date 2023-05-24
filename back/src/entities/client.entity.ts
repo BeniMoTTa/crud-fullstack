@@ -48,6 +48,8 @@ export class Client {
   @Column({ type: "enum", enum: GenderC, default: GenderC.DEFAULT })
   gender: GenderC;
 
-  @OneToMany(() => Contact, (contact) => contact.client)
+  @OneToMany(() => Contact, (contact) => contact.client, {
+    onDelete: "CASCADE",
+  })
   contact: Contact[];
 }

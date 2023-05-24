@@ -24,6 +24,7 @@ contactRouter.get("", retrieveAllContactsController);
 
 contactRouter.get(
   "/:id",
+  ensureTokenValid,
   ensureIsExistsContactMiddleware,
   retrieveOneContactController
 );

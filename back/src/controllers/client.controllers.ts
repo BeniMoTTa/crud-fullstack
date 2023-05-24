@@ -26,8 +26,7 @@ const deleteClientController = async (req: Request, res: Response) => {
 };
 
 const retrieveOneClientController = async (req: Request, res: Response) => {
-  const client = await retrieveOneClientService(req.params.id);
-
+  const client = await retrieveOneClientService(req.params.id, req.user.id);
   return res.status(200).json(client);
 };
 
