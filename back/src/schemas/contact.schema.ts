@@ -6,6 +6,7 @@ export const contactSchema = z.object({
   email: z.string().email(),
   phone: z.string(),
   gender: z.nativeEnum(GenderContact),
+  contactCity: z.string(),
 });
 
 export const returnContactSchema = contactSchema.extend({

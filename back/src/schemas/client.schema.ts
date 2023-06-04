@@ -7,6 +7,8 @@ export const clientSchema = z.object({
   password: z.string().min(3),
   phone: z.string(),
   gender: z.nativeEnum(GenderC),
+  clientPhoto: z.string(),
+  clientCity: z.string(),
 });
 
 export const returnClientSchema = clientSchema

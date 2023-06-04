@@ -9,7 +9,5 @@ export const createLoginController = async (
   const loginData: Tlogin = req.body;
 
   const token = await createLoginService(loginData);
-  return res.json({
-    token: token,
-  });
+  return res.json(token);
 };

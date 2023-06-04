@@ -10,17 +10,17 @@ const updateContactService = async (
   newContact: TContactUpdate,
   id: string
 ): Promise<TContactReturn> => {
-  const userRepository = AppDataSource.getRepository(Contact);
+  const contactRepository = AppDataSource.getRepository(Contact);
 
-  const oldContactData = await userRepository.findOneBy({
+  const oldContactData = await contactRepository.findOneBy({
     id: id,
   });
-  const user = userRepository.create({
+  const user = contactRepository.create({
     ...oldContactData,
     ...newContact,
   });
 
-  await userRepository.save(user);
+  await contactRepository.save(user);
 
   const updatedUser = returnContactSchema.parse(user);
 

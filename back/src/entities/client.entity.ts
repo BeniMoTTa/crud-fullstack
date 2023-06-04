@@ -27,6 +27,12 @@ export class Client {
   @Column({ unique: true })
   email: string;
 
+  @Column()
+  clientPhoto: string;
+
+  @Column()
+  clientCity: string;
+
   @Column({ type: "varchar", length: 200 })
   password: string;
 

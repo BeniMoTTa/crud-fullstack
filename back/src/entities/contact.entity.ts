@@ -22,6 +22,9 @@ export class Contact {
   @Column()
   phone: string;
 
+  @Column()
+  contactCity: string;
+
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   dateRegister: Date;
 

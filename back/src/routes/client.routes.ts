@@ -36,11 +36,6 @@ clientRoutes.patch(
   updateClientController
 );
 
-clientRoutes.delete(
-  "/:id",
-  ensureIsClient,
-  ensureClientHasNoContacts,
-  deleteClientController
-);
+clientRoutes.delete("/:id", ensureIsClient, deleteClientController);
 
 export { clientRoutes };

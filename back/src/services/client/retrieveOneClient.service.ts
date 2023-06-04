@@ -1,7 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Client } from "../../entities/client.entity";
 import { AppError } from "../../errors";
-import { returnClientSchema } from "../../schemas/client.schema";
 
 export const retrieveOneClientService = async (
   id: string,
@@ -21,6 +20,8 @@ export const retrieveOneClientService = async (
       "phone",
       "clientName",
       "gender",
+      "clientCity",
+      "clientPhoto",
     ],
   });
   if (!client) {

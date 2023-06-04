@@ -7,7 +7,7 @@ import { Tlogin } from "../../interfaces/login.interface";
 
 export const createLoginService = async (
   loginData: Tlogin
-): Promise<string> => {
+): Promise<object> => {
   const clientRepository = AppDataSource.getRepository(Client);
   const client: Client | null = await clientRepository.findOneBy({
     email: loginData.email,
@@ -30,5 +30,5 @@ export const createLoginService = async (
       subject: client.id,
     }
   );
-  return token;
+  return { token, id: client.id };
 };
